@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <button id=button >666</button>
+  <script src="https://unpkg.com/rxjs@^7/dist/bundles/rxjs.umd.js"></script>
+  <script>
+    const { Observable, of, pipe, map,fromEvent,merge,mergeMap } = rxjs
+    console.log('====官方====')
+    // of(1,2)
+    // .pipe()
+    new Observable(o => {
+      o.next(1)
+    })
+    fromEvent(button,'click')
+    .pipe(
+      mergeMap(v =>
+        merge(
+          of(v+'1-'),
+          of(v+'2-')
+        )
+      )
+    )
+    .subscribe(console.log)
+  </script>
+</body>
+
+</html>
