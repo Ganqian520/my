@@ -1,23 +1,29 @@
-import MyReact from './mreact/index.js'
-import React from 'react' //引入jsx
+// import Didact from './mreact/index'
+// const { useState,createElement,render } = Didact
+/** jsx createElement */
+import React,{useState,useEffect} from 'react';
+import {render} from 'react-dom';
 
-// const element = MyReact.createElement(
-//     'div',
-//     {class: 'div'},
-//     MyReact.createElement('h2',null,'h2'),
-//     MyReact.createElement('h1',null,'h1')
-// ) 
 
-const start = value => {
-  const element = (
-    <div id='container'>
-      <input onInput={e=>start(e.target.value)} value={value} />
-      <h1>{value}</h1>
-    </div>
-  )
-  MyReact.render(element,document.getElementById('app'))
+function App() {
+  return <div>
+    <Counter />
+    <A name={'brother'} />
+  </div>
 }
-
-start('1')
-
+function Counter() {
+  const [state, setState] = useState(1)
+  return (<div>
+    <button onClick={() => setState(c => c + 1)}>
+      Count: {state}
+    </button>
+    <A name={'child'} />
+  </div>)
+}
+function A({ name }) {
+  console.log(name);
+  return <h1>{name}</h1>
+}
+debugger
+render(<App />, document.getElementById("root"))
 
